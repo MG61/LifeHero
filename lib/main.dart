@@ -4,8 +4,9 @@ import 'package:lifehero/Auth/LoginView.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
+    themeMode: ThemeMode.dark,
     home: Scaffold(
-      body: Loginview(),
+      body: LoginView(),
     ),
   ));
 }
