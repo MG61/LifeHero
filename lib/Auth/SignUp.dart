@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:lifehero/Auth/SignUp.dart';
 
 import '../colors.dart';
+import 'LoginView.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpViewState extends State<SignUpView> {
   bool _obscureText = true;
 
   @override
@@ -26,18 +26,9 @@ class _LoginViewState extends State<LoginView> {
             children: [
               Image.asset("assets/images/solofit.png"),
               SizedBox(height: 40,),
-              // Text(
-              //   "Авторизация",
-              //   style: TextStyle(
-              //     fontSize: 24,
-              //     fontWeight: FontWeight.bold,
-              //     fontFamily: 'BebasNeue',
-              //     color: _AppColors.darkText,
-              //   ),
-              // ),
               const SizedBox(height: 5),
               Text(
-                "Авторизуйтесь, чтобы продолжить!",
+                "Зарегистрируйтесь, чтобы продолжить!",
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -49,6 +40,39 @@ class _LoginViewState extends State<LoginView> {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  TextField(
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 5),
+                        child: Icon(Icons.face, color: AppColors.greyText),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32),
+                        borderSide: BorderSide(color: AppColors.borderLight),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32),
+                        borderSide: BorderSide(color: AppColors.borderLight),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(32),
+                        borderSide: BorderSide(color: AppColors.primary, width: 2),
+                      ),
+                      labelText: "Имя пользователя",
+                      labelStyle: TextStyle(
+                        color: AppColors.greyText,
+                        fontFamily: 'Inter',
+                      ),
+                      filled: true,
+                      fillColor: AppColors.cardLight,
+                    ),
+                    style: TextStyle(
+                      color: AppColors.darkText,
+                      fontFamily: 'Inter',
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                   TextField(
                     maxLines: 1,
                     decoration: InputDecoration(
@@ -133,20 +157,6 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ],
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Забыли пароль?",
-                    style: TextStyle(
-                      color: AppColors.primary,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
               const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
@@ -161,7 +171,7 @@ class _LoginViewState extends State<LoginView> {
                     elevation: 0,
                   ),
                   child: Text(
-                    "Войти",
+                    "Зарегистрироваться",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -177,38 +187,14 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Нужен аккаунт?",style: TextStyle(
+                    Text("Уже есть аккаунт?",style: TextStyle(
                       color: AppColors.greyText,),),
                     TextButton(onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignUpView()));
-                    }, child: Text("Зарегистрироваться", style: TextStyle(color: AppColors.primary),))
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginView()));
+                    }, child: Text("Войти", style: TextStyle(color: AppColors.primary),))
                   ],
                 ),
               ),
-              // SizedBox(
-              //   width: double.infinity,
-              //   child: OutlinedButton(
-              //     onPressed: () {
-              //       Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignUpView()));
-              //     },
-              //     style: OutlinedButton.styleFrom(
-              //       padding: const EdgeInsets.symmetric(vertical: 16),
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(32),
-              //       ),
-              //       side: BorderSide(color: AppColors.primary),
-              //     ),
-              //     child: Text(
-              //       "Регистрация",
-              //       style: TextStyle(
-              //         fontSize: 16,
-              //         fontWeight: FontWeight.bold,
-              //         fontFamily: 'Inter',
-              //         color: AppColors.primary,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               const Divider(
                 height: 20,
                 thickness: 1,
