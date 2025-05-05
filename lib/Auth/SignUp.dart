@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lifehero/View/ChallengeView.dart';
 
+import '../Widget/Navigation.dart';
 import '../colors.dart';
 import 'LoginView.dart';
 
@@ -161,7 +163,7 @@ class _SignUpViewState extends State<SignUpView> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NavigationView()));},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     padding: const EdgeInsets.symmetric(vertical: 16),
@@ -190,7 +192,7 @@ class _SignUpViewState extends State<SignUpView> {
                     Text("Уже есть аккаунт?",style: TextStyle(
                       color: AppColors.greyText,),),
                     TextButton(onPressed: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginView()));
+                      Navigator.pop(context);
                     }, child: Text("Войти", style: TextStyle(color: AppColors.primary),))
                   ],
                 ),

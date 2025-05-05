@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lifehero/Auth/SignUp.dart';
+import 'package:lifehero/View/ChallengeView.dart';
 
+import '../Widget/Navigation.dart';
 import '../colors.dart';
 
 class LoginView extends StatefulWidget {
@@ -151,7 +153,7 @@ class _LoginViewState extends State<LoginView> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NavigationView()));},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     padding: const EdgeInsets.symmetric(vertical: 16),
