@@ -185,6 +185,7 @@ class _LoginViewState extends State<LoginView> {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignUpView()));
                     }, child: Text("Зарегистрироваться", style: TextStyle(color: AppColors.primary),))
                   ],
+
                 ),
               ),
               // SizedBox(
