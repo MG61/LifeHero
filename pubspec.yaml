@@ -38,6 +38,8 @@ dependencies:
   lottie: 3.3.1
   google_nav_bar: ^5.0.7
   line_icons: ^2.0.3
+  simple_circular_progress_bar: ^1.0.2
+  cart_stepper: ^4.3.0
 
 dev_dependencies:
   flutter_test:
