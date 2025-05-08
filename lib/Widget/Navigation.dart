@@ -24,7 +24,7 @@ class _NavigationViewState extends State<NavigationView> {
   }
 
   final List<Widget> _pages = const [
-    Challengeview(),
+    ChallengeView(),
     Workoutview(),
     Nutritionview(),
     Profileview()

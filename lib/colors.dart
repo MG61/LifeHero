@@ -19,4 +19,11 @@ class AppColors {
   static const Color error = Color(0xFFE74C3C);
   static const Color success = Color(0xFF2ECC71);
   static const Color white = Colors.white;
+
+
+
+  // Основной цвет — уже задан: Color(0xFF5C60ED)
+  // static const Color pushup = Color(0xFF0984E3); // secondary
+  // static const Color twisting = Color(0xFFA29BFE); // lightAccent
+  // static const Color squat = Color(0xFF6C5CE7); // чуть темнее primary
 }
