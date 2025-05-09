@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lifehero/colors.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 
 class Workoutview extends StatefulWidget {
   const Workoutview({super.key});
@@ -32,7 +34,7 @@ class _WorkoutviewState extends State<Workoutview> {
           },
           calendarFormat: CalendarFormat.week,
           startingDayOfWeek: StartingDayOfWeek.monday,
-          locale: "en_US",
+          locale: "ru_RU",
           availableCalendarFormats: const {
             CalendarFormat.week: 'Week', // Оставляем только недельный формат
           },
