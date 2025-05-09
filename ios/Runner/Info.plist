@@ -3,12 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>com.googleusercontent.apps.964752564154-855udm1nf4ets7d9ktlfq498fvilveiq</string>
-		</dict>
-	</array>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps.964752564154-855udm1nf4ets7d9ktlfq498fvilveiq</string>
+        </array>
+      </dict>
+    </array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

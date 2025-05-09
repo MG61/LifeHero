@@ -60,23 +60,21 @@ class _LoginViewState extends State<LoginView> {
     }
   }
 
-  Future<UserCredential?> signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) return null;
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
 
-      return await FirebaseAuth.instance.signInWithCredential(credential);
-    } catch (e) {
-      print('Google Sign-In Error: $e');
-      return null;
-    }
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   // String _getErrorMessage(String code) {
@@ -343,6 +341,9 @@ class _LoginViewState extends State<LoginView> {
                             if (userCredential != null) {
                               // Успешный вход
                               print("Успешный вход");
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) => const NavigationView()),
+                              );
                             } else {
                               // Ошибка или отмена входа
                               print("Ошибка входа");
