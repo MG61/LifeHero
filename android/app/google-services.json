@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "964752564154",
+    "firebase_url": "https://saitama-4134e-default-rtdb.firebaseio.com",
+    "project_id": "saitama-4134e",
+    "storage_bucket": "saitama-4134e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964752564154:android:ebb05ec1ef89b6f2be4783",
+        "android_client_info": {
+          "package_name": "com.example.lifehero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964752564154-kmfrb1qk6c2jg5vo8ftdpol8sjn57cb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWJleGAkfCK8nS5GhS04McFHqKUzxoKqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964752564154-kmfrb1qk6c2jg5vo8ftdpol8sjn57cb2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "964752564154-aoohcapjpgkgn65vkcnt2j0c008hci7v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Vladsapsan.SaitamaTraining"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964752564154:android:81186e26fb1306a7be4783",
+        "android_client_info": {
+          "package_name": "com.example.livesaitama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964752564154-obdjk5ueh8kmt6icvt1pep5svf254906.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.livesaitama",
+            "certificate_hash": "4ccc3a38407830514c49573c3b01810b9692859f"
+          }
+        },
+        {
+          "client_id": "964752564154-kmfrb1qk6c2jg5vo8ftdpol8sjn57cb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWJleGAkfCK8nS5GhS04McFHqKUzxoKqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964752564154-kmfrb1qk6c2jg5vo8ftdpol8sjn57cb2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "964752564154-aoohcapjpgkgn65vkcnt2j0c008hci7v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Vladsapsan.SaitamaTraining"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

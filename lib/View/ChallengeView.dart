@@ -2,6 +2,9 @@ import 'package:cart_stepper/cart_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:lifehero/colors.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
+import 'package:intl/intl.dart';
+
+import '../SQLite/database_adapter.dart'; // подключи путь к своей базе данных
 
 class ChallengeView extends StatefulWidget {
   const ChallengeView({super.key});
@@ -39,6 +42,13 @@ class _ChallengeViewState extends State<ChallengeView> {
     super.dispose();
   }
 
+  // Автоматическое сохранение одного значения по ключу
+  Future<void> _saveValueToDb(String field, int value) async {
+    final db = DatabaseHelper.instance;
+    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    await db.updateOrInsertField(date: today, field: field, value: value);
+  }
+
   Widget buildExerciseCard({
     required String label,
     required IconData icon,
@@ -47,6 +57,7 @@ class _ChallengeViewState extends State<ChallengeView> {
     required ValueNotifier<double> notifier,
     required Color color,
     required Function(int) onChanged,
+    required String dbField,
   }) {
     return Container(
       height: 80,
@@ -83,10 +94,11 @@ class _ChallengeViewState extends State<ChallengeView> {
                 activeForegroundColor: AppColors.white,
                 activeBackgroundColor: color,
               ),
-              didChangeCount: (count) {
+              didChangeCount: (val) {
                 setState(() {
-                  onChanged(count);
-                  notifier.value = count.toDouble();
+                  onChanged(val);
+                  notifier.value = val.toDouble();
+                  _saveValueToDb(dbField, val);
                 });
               },
             ),
@@ -96,10 +108,78 @@ class _ChallengeViewState extends State<ChallengeView> {
     );
   }
 
+  Widget _buildCircleIcon({
+    required IconData icon,
+    required VoidCallback onTap,
+    required String tooltip,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Tooltip(
+        message: tooltip,
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppColors.cardLight,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 6,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Icon(icon, size: 22, color: AppColors.darkText),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: AppColors.white,
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              _buildCircleIcon(
+                icon: Icons.history,
+                tooltip: 'История',
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('История тренировок')),
+                  );
+                },
+              ),
+              const SizedBox(width: 12),
+              _buildCircleIcon(
+                icon: Icons.emoji_events,
+                tooltip: 'Рейтинг',
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Рейтинг')),
+                  );
+                },
+              ),
+              const SizedBox(width: 12),
+              _buildCircleIcon(
+                icon: Icons.local_fire_department,
+                tooltip: 'Серия',
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Серия дней подряд')),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
         backgroundColor: AppColors.white,
         body: Column(
           children: [
@@ -163,6 +243,7 @@ class _ChallengeViewState extends State<ChallengeView> {
               notifier: runValueNotifier,
               color: AppColors.primary,
               onChanged: (val) => runCount = val,
+              dbField: "run",
             ),
             const SizedBox(height: 20),
             buildExerciseCard(
@@ -173,6 +254,7 @@ class _ChallengeViewState extends State<ChallengeView> {
               notifier: pushValueNotifier,
               color: AppColors.secondary,
               onChanged: (val) => pushCount = val,
+              dbField: "pushups",
             ),
             const SizedBox(height: 20),
             buildExerciseCard(
@@ -183,6 +265,7 @@ class _ChallengeViewState extends State<ChallengeView> {
               notifier: twistingValueNotifier,
               color: AppColors.lightAccent,
               onChanged: (val) => twistingCount = val,
+              dbField: "crunches",
             ),
             const SizedBox(height: 20),
             buildExerciseCard(
@@ -193,6 +276,7 @@ class _ChallengeViewState extends State<ChallengeView> {
               notifier: squatValueNotifier,
               color: const Color(0xFF7F74D9),
               onChanged: (val) => squatCount = val,
+              dbField: "squats",
             ),
           ],
         ),

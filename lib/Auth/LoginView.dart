@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -49,7 +51,7 @@ class _LoginViewState extends State<LoginView> {
       } on FirebaseAuthException catch (e) {
         setState(() {
           _isLoading = false;
-          // _errorMessage = _getErrorMessage(e.code);
+          _errorMessage = _getErrorMessage(e.code);
         });
       } catch (e) {
         setState(() {
@@ -77,18 +79,18 @@ class _LoginViewState extends State<LoginView> {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  // String _getErrorMessage(String code) {
-  //   switch (code) {
-  //     case 'user-not-found':
-  //       return 'Пользователь не найден';
-  //     case 'wrong-password':
-  //       return 'Неверный пароль';
-  //     case 'invalid-email':
-  //       return 'Некорректный email';
-  //     default:
-  //       return 'Ошибка авторизации';
-  //   }
-  // }
+  String _getErrorMessage(String code) {
+    switch (code) {
+      case 'user-not-found':
+        return 'Пользователь не найден';
+      case 'wrong-password':
+        return 'Неверный пароль';
+      case 'invalid-email':
+        return 'Некорректный email';
+      default:
+        return 'Ошибка авторизации';
+    }
+  }
 
   Future<void> _resetPassword() async {
     if (_emailController.text.isEmpty) {
@@ -139,7 +141,7 @@ class _LoginViewState extends State<LoginView> {
                       color: AppColors.greyText,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   if (_errorMessage != null)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16),
@@ -371,40 +373,41 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.cardLight,
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32),
+                      if (Platform.isIOS)
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.cardLight,
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32),
+                              ),
+                              elevation: 0,
                             ),
-                            elevation: 0,
-                          ),
-                          onPressed: () {
-                            // TODO: Реализовать вход через Apple
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                "assets/images/mac.png",
-                                width: 24,
-                                height: 24,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                "Apple",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Inter',
-                                  color: AppColors.darkText,
+                            onPressed: () {
+                              // TODO: Реализовать вход через Apple
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  "assets/images/mac.png",
+                                  width: 24,
+                                  height: 24,
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 8),
+                                Text(
+                                  "Apple",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
+                                    color: AppColors.darkText,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ],

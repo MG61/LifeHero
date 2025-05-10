@@ -86,7 +86,7 @@ class _SignUpViewState extends State<SignUpView> {
       } on FirebaseAuthException catch (e) {
         setState(() {
           _isLoading = false;
-          // _errorMessage = _getErrorMessage(e.code);
+          _errorMessage = _getErrorMessage(e.code);
         });
       } catch (e) {
         setState(() {
@@ -97,18 +97,18 @@ class _SignUpViewState extends State<SignUpView> {
     }
   }
 
-  // String _getErrorMessage(String code) {
-  //   switch (code) {
-  //     case 'email-already-in-use':
-  //       return 'Этот email уже используется';
-  //     case 'invalid-email':
-  //       return 'Некорректный email';
-  //     case 'weak-password':
-  //       return 'Пароль слишком слабый';
-  //     default:
-  //       return 'Ошибка регистрации';
-  //   }
-  // }
+  String _getErrorMessage(String code) {
+    switch (code) {
+      case 'email-already-in-use':
+        return 'Этот email уже используется';
+      case 'invalid-email':
+        return 'Некорректный email';
+      case 'weak-password':
+        return 'Пароль слишком слабый';
+      default:
+        return 'Ошибка регистрации';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +135,7 @@ class _SignUpViewState extends State<SignUpView> {
                       color: AppColors.greyText,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   if (_errorMessage != null)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16),
